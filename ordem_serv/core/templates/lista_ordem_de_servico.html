@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    {% include 'nav.html' %}
+
+    <main class="app-content">
+        <div class="app-title">
+            <h4>Lista Ordem de Serviço</h4>
+            <a href="{% url 'core:lista_projeto' %}" class="btn btn-dark" data-toggle="tooltip" title="Voltar a Lista de Projetos" data-placement="left"><i class="fas fa-bars"></i></a>
+        </div>
+        <br>
+        <a href="{% url 'core:nova_ordem' %}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Adicionar Nova Ordem de Serviço</a>
+        <br>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="tile">
+                    <div class="tile-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover table-bordered" id="sampleTable">
+                                <thead>
+                                    <tr>
+                                        <th>Cliente</th>
+                                        <th>Responsavel</th>
+                                        <th>Analista</th>
+                                        <th>Solicitante</th>
+                                        <th>Data de Atendimento</th>
+                                        <th>Hora de Entrada</th>
+                                        <th>Hora de Saida</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for f in ordemDeServico %}
+                                        <tr>
+                                            <th>{{ f.cliente}}</th>
+                                            <th>{{ f.responsavel}}</th>
+                                            <th>{{ f.analista }}</th>
+                                            <th>{{ f.solicitante }}</th>
+                                            <th>{{ f.dataAtendimento }}</th>
+                                            <th>{{ f.hora_entrada }}</th>
+                                            <th>{{ f.hora_saida }}</th>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'core/js/novo_solicitante.js' %}"></script>
+{% endblock %}
+

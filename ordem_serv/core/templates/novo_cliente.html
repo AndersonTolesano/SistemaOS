@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    {% include 'nav.html' %}
+
+    <main class="app-content">
+        <div class="app-title">
+            <h4>Cadastro de Novo Cliente</h4>
+            <a href="{% url 'core:lista_cliente' %}" class="btn btn-dark" data-toggle="tooltip" title="Voltar a Lista de Clientes" data-placement="left"><i class="fas fa-bars"></i></a>
+        </div>
+        <br>
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Cliente</a>
+            </li>
+{#            <li class="nav-item">#}
+{#                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Contato</a>#}
+{#            </li>#}
+{#            <li class="nav-item">#}
+{#                <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Solicitante</a>#}
+{#            </li>#}
+        </ul>
+        <br>
+
+        {# Clientes #}
+    <main>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                <div class="row">
+                    {% for f in form %}
+                        {% if forloop.counter == 1 or forloop.counter == 2 %}
+                            <div class="form-group col-md-6">
+                                <label for="{{ f.id_for_label }}">{{ f.label }}</label>
+                                {{ f }}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+
+                <div class="row">
+                    {% for f in form %}
+                        {% if forloop.counter == 3 or forloop.counter == 4 or forloop.counter == 5 %}
+                            <div class="form-group col-md-4">
+                                <label for="{{ f.id_for_label }}">{{ f.label }}</label>
+                                {{ f }}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+
+                <div class="row">
+                    {% for f in form %}
+                        {% if forloop.counter == 6 %}
+                            <div class="form-group col-md-12">
+                                <label for="{{ f.id_for_label }}">{{ f.label }}</label>
+                                {{ f }}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+
+                <div class="row">
+                    {% for f in form %}
+                        {% if forloop.counter == 7 or forloop.counter == 8 or forloop.counter == 9 %}
+                            <div class="form-group col-md-4">
+                                <label for="{{ f.id_for_label }}">{{ f.label }}</label>
+                                {{ f }}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <div class="row">
+                    <div class="col text-center">
+                        <button class="btn btn-success" id="botao" type="button">Salvar</button>
+                    </div>
+                </div>
+            </div>
+
+
+            {# Contatos #}
+{#            <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">#}
+{#                <div class="row">#}
+{#                    {% for f in contato %}#}
+{#                        {% if forloop.counter == 1 %}#}
+{#                            <div class="form-group col-md-12">#}
+{#                                <label for="{{ f.id_for_label }}">{{ f.label }}</label>#}
+{#                                {{ f }}#}
+{#                            </div>#}
+{#                        {% endif %}#}
+{#                    {% endfor %}#}
+{#                </div>#}
+{##}
+{#                <div class="row">#}
+{#                    {% for f in contato %}#}
+{#                        {% if forloop.counter == 3 %}#}
+{#                            <div class="form-group col-md-12">#}
+{#                                <label for="{{ f.id_for_label }}">{{ f.label }}</label>#}
+{#                                {{ f }}#}
+{#                            </div>#}
+{#                        {% endif %}#}
+{#                    {% endfor %}#}
+{#                </div>#}
+{##}
+{#                <div class="row">#}
+{#                    {% for f in contato %}#}
+{#                        {% if forloop.counter == 2 %}#}
+{#                            <div class="form-group col-md-12">#}
+{#                                <label for="{{ f.id_for_label }}">{{ f.label }}</label>#}
+{#                                {{ f }}#}
+{#                            </div>#}
+{#                        {% endif %}#}
+{#                    {% endfor %}#}
+{#                </div>#}
+{#                <div class="row">#}
+{#                    <div class="col text-center">#}
+{#                        <button class="btn btn-success" id="btncontato" type="button">Salvar</button>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+    </main>
+
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'core/js/novo_cliente.js' %}"></script>
+    <script src="{% static 'core/js/novo_contato.js' %}"></script>
+{% endblock %}

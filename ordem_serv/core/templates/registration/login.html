@@ -1,0 +1,43 @@
+{% extends 'base-login.html' %}
+{% load static %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6" style="margin-top: 100px; left: 25%;">
+                <div class="hpanel">
+                    <div class="panel-body">
+                        <form class="login-form" method="POST">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label class="control-label" for="email">Email</label>
+                                <input type="email" placeholder="example@gmail.com" title="Por favor informe seu email" required name="username" id="id_username" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="password">Senha</label>
+                                <input type="password" title="Informe sua senha" placeholder="******" required name="password" id="password" class="form-control">
+                            </div>
+                            <button class="btn btn-success btn-block loginbtn" type="submit">Login</button>
+                            <a class="btn btn-dark btn-block" href="{% url 'password_reset' %}">Esqueci minha senha</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        {% if error_messages %}
+            <div class="row">
+                <div class="col-md-6" style="margin-top: 100px; left: 25%;">
+                    <div class="alert alert-danger">
+                        {{ error_messages }}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
+

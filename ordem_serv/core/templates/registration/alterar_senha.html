@@ -1,0 +1,52 @@
+{% extends 'base-login.html' %}
+{% load static %}
+
+{% block title %}Novo Usuário{% endblock %}
+
+{% block content %}
+
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4" style="margin-top: 100px;">
+                <div class="hpanel">
+                    <div class="panel-body">
+                        <form class="login-form" method="POST">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label class="control-label" for="id_old_password">Old password</label>
+                                <input type="password" placeholder="*******" title="Please enter you username" required="" value="" name="old_password" id="id_old_password" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="id_new_password1">New password</label>
+                                <input type="password" title="Please enter your password" placeholder="******" required="" value="" name="new_password1" id="id_new_password1" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="id_new_password2">New password2</label>
+                                <input type="password" title="Please enter your password" placeholder="******" required="" value="" name="new_password2" id="id_new_password2" class="form-control">
+                            </div>
+                            <button class="btn btn-success btn-block loginbtn" type="submit">Change my password</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                {% if error %}
+                    <div class="alert alert-danger">
+                        <p class="alert-text">Erro ao alterar senha!</p>
+                    </div>
+                {% endif %}
+                {% if success %}
+                    <div class="alert alert-success">
+                        <p class="alert-text">Senha alterada com sucesso!</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+

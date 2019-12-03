@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    {% include 'nav.html' %}
+
+    <main class="app-content">
+        <div class="row">
+            <div class="col">
+                <a href="{% url 'core:cadastro_usuario' %}" class="btn btn-dark" data-toggle="tooltip" title="Cadastrar novo usuário" data-placement="right"><i class="fas fa-plus"></i></a>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="tile">
+                    <div class="tile-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover table-bordered" id="sampleTable">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Nome</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Nivel</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Editar</th>
+                                        <th scope="col">Bloquear</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for u in usuario %}
+                                    <tr>
+                                        <th scope="row">{{ u.first_name }} {{ u.last_name }}</th>
+                                        <td>{{ u.email }}</td>
+                                        <td>{{ u.get_status_display }}</td>
+                                        <td>{% if u.is_active %}Ativo{% else %}Inativo{% endif %}</td>
+                                        <td><a href="{% url 'core:edit_usuario' u.pk %}" class="btn btn-success btn-sm"><i class="fas fa-edit"></i></a></td>
+                                        <td><a href="#" class="btn btn-secondary btn-sm"><i class="fas fa-ban"></i></i></a></td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+{% endblock %}
+
+{% block script %}
+    {% if edit %}
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'SUCESSO',
+                text: 'Usuário atualizado com sucesso',
+                allowEscapeKey: false,
+                allowOutsideClick: false
+            }).then((result) => {
+                if (result.value) {
+                    $(location).attr('href');
+                    var bn_pathname = window.location.href;
+                    var en_pathname = bn_pathname.replace("True/", "");
+                    window.location.replace(en_pathname);
+                }
+            })
+        </script>
+    {% endif %}
+{% endblock %}

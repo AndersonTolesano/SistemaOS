@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    {% include 'nav.html' %}
+
+    <main class="app-content">
+        <div class="app-title">
+            <h4>Novo Projeto</h4>
+            <a href="{% url 'core:lista_cliente' %}" class="btn btn-dark" data-toggle="tooltip"
+               title="Voltar a Lista de Clientes" data-placement="left"><i class="fas fa-bars"></i></a>
+        </div>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="row">
+                {% for f in form %}
+                    <div class="form-group col-md-6 {% if forloop.counter == 7 or forloop.counter == 8 %}presencial{% endif %}"
+                         {% if forloop.counter == 7 or forloop.counter == 8 %}hidden{% endif %}>
+                        {{ f.label }}
+                        {{ f }}
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="row">
+                <div class="col text-left">
+                    <button class="btn btn-success" type="submit">Salvar</button>
+                </div>
+            </div>
+        </form>
+    </main>
+
+{% endblock %}
+
+{% block script %}
+    {% if success %}
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Sucesso',
+                text: 'Seu projeto foi criado',
+            })
+        </script>
+    {% endif %}
+    {% if error %}
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Favor preencha todos os campos \n {{ error }}',
+            })
+        </script>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    {% include 'nav.html' %}
+
+    <main class="app-content">
+        <div class="app-title">
+            <div>
+                <h4>Clientes</h4>
+            </div>
+            <ul class="app-breadcrumb breadcrumb side">
+                <li class="text-right">
+                    <a href="{% url 'core:novo_cliente' %}" class="btn btn-dark" data-toggle="tooltip" title="Cadastrar Novo Cliente" data-placement="right"><i class="fas fa-plus"></i></a>
+                </li>
+            </ul>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="tile">
+                    <div class="tile-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover table-bordered" id="sampleTable">
+                                <thead>
+                                    <tr>
+                                        <th>Razão Social</th>
+                                        <th>Fantasia</th>
+                                        <th>Email</th>
+                                        <th>Contato</th>
+                                        <th>Ativo</th>
+                                        <th>Contatos</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for c in clientes %}
+                                        <tr>
+                                            <td>{{ c.razao_social }}</td>
+                                            <td>{{ c.fantasia }}</td>
+                                            <td>{{ c.email }}</td>
+                                            <td>{{ c.fone1 }}</td>
+                                            <td>{{ c.get_ativo_display }}</td>
+                                            <td><a href="{% url 'core:lista_contato' c.pk %}" class="btn btn-outline-dark"><i class="far fa-eye"></i></a></td>
+
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+
+{% endblock %}
+
+{% block script %}
+    {% if edit %}
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'SUCESSO',
+                text: 'Cliente atualizado com sucesso',
+                allowEscapeKey: false,
+                allowOutsideClick: false
+            }).then((result) => {
+                if (result.value) {
+                    $(location).attr('href');
+                    var bn_pathname = window.location.href;
+                    var en_pathname = bn_pathname.replace("True/", "");
+                    window.location.replace(en_pathname);
+                }
+                else:
+                (result.value) {
+                    $(location).attr('href');
+                    var bn_pathname = window.location.href;
+                    var en_pathname = bn_pathname.replace("False/", "");
+                    window.location.replace(en_pathname);
+                })
+        </script>
+    {% endif %}
+{% endblock %}

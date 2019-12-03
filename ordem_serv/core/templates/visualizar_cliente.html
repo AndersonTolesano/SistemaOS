@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    {% include 'nav.html' %}
+
+    <main class="app-content">
+        <div class="app-title">
+            <div>
+                <h4>Dados do Cliente</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="tile">
+                    <div class="tile-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover table-bordered" id="sampleTable">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Razão Social</th>
+                                    <th scope="col">Fantasia</th>
+                                    <th scope="col">Fone1</th>
+                                    <th scope="col">Comercial</th>
+                                    <th scope="col">Celular</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">CNPJ</th>
+                                    <th scope="col">IE</th>
+                                    <th scope="col">Ativo</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for c in clientes %}
+                                    <tr>
+                                        <td>{{ c.razao_social }}</td>
+                                        <td>{{ c.fantasia }}</td>
+                                        <td>{{ c.fone1 }}</td>
+                                        <td>{{ c.fone2 }}</td>
+                                        <td>{{ c.celular }}</td>
+                                        <td>{{ c.email }}</td>
+                                        <td>{{ c.cnpj }}</td>
+                                        <td>{{ c.ie }}</td>
+                                        <td>{{ c.get_ativo_display }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+{% endblock %}

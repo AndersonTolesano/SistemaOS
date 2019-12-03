@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    {% include 'nav.html' %}
+
+    <main class="app-content">
+        <div class="app-title">
+            <h4>Novo Usuário</h4>
+            <a href="{% url 'core:usuario_list' %}" class="btn btn-dark" data-toggle="tooltip"
+               title="Voltar a Lista de Usuario" data-placement="left"><i class="fas fa-bars"></i></a>
+        </div>
+        <form method="post">
+            {% csrf_token %}
+            <div class="row">
+                {% for f in form %}
+                    {% if forloop.counter == 1 or forloop.counter == 2 %}
+                        <div class="form-group col-md-6">
+                            <label for="{{ f.id_for_label }}">{{ f.label }}</label>
+                            {{ f }}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div class="row">
+                {% for f in form %}
+                    {% if forloop.counter == 3 or forloop.counter == 6 %}
+                        <div class="form-group col-md-6">
+                            <label for="{{ f.id_for_label }}">{{ f.label }}</label>
+                            {{ f }}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div class="row">
+                {% for f in form %}
+                    {% if forloop.counter == 5 or forloop.counter == 4 %}
+                        <div class="form-group col-md-6">
+                            <label for="{{ f.id_for_label }}">{{ f.label }}</label>
+                            {{ f }}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div class="row">
+                {% for f in form %}
+                    {% if forloop.counter == 7 or forloop.counter == 8 %}
+                        <div class="form-group col-md-6">
+                            <label for="{{ f.id_for_label }}">{{ f.label }}</label>
+                            {{ f }}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <button type="submit" class="btn btn-success">Salvar</button>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-8 offset-3">
+                    {% if error %}
+                        <div class="alert alert-danger" role="alert">{{ error }}</div>
+                    {% endif %}
+                    {% if success %}
+                        <div class="alert alert-success" role="alert">Usuário cadastrado com sucesso</div>
+                    {% endif %}
+                </div>
+            </div>
+        </form>
+    </main>
+{% endblock %}
